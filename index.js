@@ -1,10 +1,13 @@
+#!/usr/bin/env node
+
 const program = require("commander");
 const { resolve, parse } = require("path");
 const fs = require("fs");
 const uuid = require("uuid");
 const request = require("request-promise");
 const aesjs = require("aes-js");
-const chalk = require('chalk');
+const chalk = require("chalk");
+const { version } = require("./package.json");
 
 const buildUrl = (id, key) => {
   return `https://codypaste.io/view/${id}?key=${key}`;
@@ -102,13 +105,13 @@ const publish = async relativePathToFile => {
   const groupId = await createGroup(encryptedTitle);
   await createSnippet(groupId, encryptedContent, encryptedTitle);
   const url = buildUrl(groupId, normalized);
-    console.log(chalk.green('ID:  ', chalk.magenta(groupId)));
-    console.log(chalk.green('Key: ', chalk.magenta(normalized)));
-    console.log(chalk.green('URL: ', chalk.magenta(url)));
+  console.log(chalk.green("ID:  ", chalk.magenta(groupId)));
+  console.log(chalk.green("Key: ", chalk.magenta(normalized)));
+  console.log(chalk.green("URL: ", chalk.magenta(url)));
 };
 
 program
-  .version("0.1.0")
+  .version(version)
   .command("publish <file>")
   .action(async file => {
     await publish(file);
