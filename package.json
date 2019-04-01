@@ -1,4 +1,4 @@
-{
+]{
   "name": "codypaste-cli",
   "version": "1.1.0",
   "description": "",
@@ -10,8 +10,6 @@
     "codypaste-cli": "./index.js"
   },
   "preferGlobal": true,
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "aes-js": "^3.1.2",
     "chalk": "^2.4.2",
@@ -19,5 +17,15 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "uuid": "^3.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codypaste/codypaste-cli.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codypaste/codypaste-cli/issues"
+  },
+  "homepage": "https://github.com/codypaste/codypaste-cli#readme"
 }
