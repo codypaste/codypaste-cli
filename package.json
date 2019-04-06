@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "bin": {
     "codypaste-cli": "./index.js"
@@ -27,5 +27,21 @@
   "bugs": {
     "url": "https://github.com/codypaste/codypaste-cli/issues"
   },
-  "homepage": "https://github.com/codypaste/codypaste-cli#readme"
+  "homepage": "https://github.com/codypaste/codypaste-cli#readme",
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "check-types": "^8.0.2",
+    "lodash": "^4.17.11"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "cache": true,
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "verbose": true,
+    "compileEnhancements": false
+  }
 }
