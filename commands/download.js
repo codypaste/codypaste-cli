@@ -1,8 +1,14 @@
 const fs = require("fs");
-const { resolve, parse, format } = require("path");
+const {
+  resolve,
+  parse,
+  format
+} = require("path");
 const request = require("request-promise");
 const chalk = require("chalk");
-const { decrypt } = require('../utils/utils');
+const {
+  decrypt
+} = require('../utils/utils');
 
 const saveFile = async (path, content) => {
   return new Promise((resolve, reject) => {
@@ -27,12 +33,14 @@ const getSnippets = async id => {
     json: true
   };
 
-  const res = await request(requestOptions);
+  const res = await request.post(requestOptions);
   return res;
 };
 
 const download = async (id, key, output) => {
-  const { snippets } = await getSnippets(id);
+  const {
+    snippets
+  } = await getSnippets(id);
   const decrypted = snippets.map(snippet => {
     return {
       snippetName: decrypt(snippet.snippetName, key),
@@ -54,4 +62,8 @@ const download = async (id, key, output) => {
   }
 };
 
-module.exports = { download };
+module.exports = {
+  download,
+  saveFile,
+  getSnippets
+};
