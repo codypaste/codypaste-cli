@@ -1,4 +1,5 @@
 # CODYPASTE CLI
+[![CircleCI](https://circleci.com/gh/codypaste/codypaste-cli.svg?style=svg)](https://circleci.com/gh/codypaste/codypaste-cli)
 
 Use [CODYPASTE.io](https://codypaste.io/new) directly from your command line - publish, download with encryption!
 
