@@ -1,10 +1,10 @@
 {
   "name": "codypaste-cli",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": {
     "codypaste-cli": "./index.js"
@@ -27,5 +27,18 @@
   "bugs": {
     "url": "https://github.com/codypaste/codypaste-cli/issues"
   },
-  "homepage": "https://github.com/codypaste/codypaste-cli#readme"
+  "homepage": "https://github.com/codypaste/codypaste-cli#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "check-types": "^8.0.2",
+    "jest": "^24.7.1",
+    "lodash": "^4.17.11"
+  },
+  "jest": {
+    "testMatch": [
+      "**/*.test.js"
+    ]
+  }
 }
