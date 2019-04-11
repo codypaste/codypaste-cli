@@ -3,12 +3,12 @@ const request = require("request-promise");
 
 const DownloadCommand = require("../../commands/download");
 
-jest.mock('fs');
-jest.mock('request');
+jest.mock("fs");
+jest.mock("request");
 
 afterEach(() => {
-  jest.resetAllMocks()
-})
+  jest.resetAllMocks();
+});
 
 test("saveFile should successfully save file", async () => {
   expect.assertions(1);
@@ -26,27 +26,33 @@ test("getSnippets should successfully return array of snippets", async () => {
   expect(res).toEqual([1, 2]);
 });
 
-test("download should successfully download snippets, decode them and save to file", async t => {
+test("download should successfully download snippets, decode them and save to file", async () => {
   expect.assertions(3);
 
-  const consoleSpy = jest.spyOn(console, 'log');
+  const consoleSpy = jest.spyOn(console, "log");
 
   fs.writeFile.mockImplementation((path, content, cb) => {
     return cb(null);
   });
 
-
   request.post.mockResolvedValue({
-    snippets: [{
-      snippet: "83fd",
-      snippetName: "b7f16e26b1cc52f1072b"
-    }, {
-      snippet: "81fb",
-      snippetName: "b7f16e26b1cc52f10728"
-    }]
+    snippets: [
+      {
+        snippet: "83fd",
+        snippetName: "b7f16e26b1cc52f1072b"
+      },
+      {
+        snippet: "81fb",
+        snippetName: "b7f16e26b1cc52f10728"
+      }
+    ]
   });
 
-  await DownloadCommand.download(1, "2fd2f540dceb425f90f4de1bd222ccfe", "./output.txt");
+  await DownloadCommand.download(
+    1,
+    "2fd2f540dceb425f90f4de1bd222ccfe",
+    "./output.txt"
+  );
 
   expect(fs.writeFile).toHaveBeenCalledTimes(2);
   expect(request.post).toHaveBeenCalledTimes(1);
