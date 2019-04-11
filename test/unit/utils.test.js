@@ -1,4 +1,3 @@
-import test from "ava";
 const check = require("check-types");
 const _ = require("lodash");
 const {
@@ -8,43 +7,43 @@ const {
   generate256BitKey
 } = require("../../utils/utils");
 
-test("buildUrl should build correct view url for codypaste website", t => {
+test("buildUrl should build correct view url for codypaste website", () => {
   const id = 1;
   const key = 2;
   const url = buildUrl(id, key);
 
-  t.is(url, "https://codypaste.io/view/1?key=2");
+  expect(url).toBe("https://codypaste.io/view/1?key=2");
 });
 
-test("encrypt should successfully encrypt string", async t => {
+test("encrypt should successfully encrypt string", () => {
   const stringToEncrypt = "abc def";
   const { key } = generate256BitKey();
   const encrypted = encrypt(stringToEncrypt, key);
 
-  t.not(encrypted, stringToEncrypt);
+  expect(encrypted).not.toBe(stringToEncrypt);
 });
 
-test("decrypt should successfully decrypt string", async t => {
+test("decrypt should successfully decrypt string", () => {
   const stringToEncrypt = "abc def";
   const { key, normalized } = generate256BitKey();
   const encrypted = encrypt(stringToEncrypt, key);
 
   const decrypted = decrypt(encrypted, normalized);
 
-  t.is(decrypted, stringToEncrypt);
+  expect(decrypted).toBe(stringToEncrypt);
 });
 
-test("generate256BitKey should generate 256 bit key normalized and in array buffer", async t => {
+test("generate256BitKey should generate 256 bit key normalized and in array buffer", () => {
   const { key, normalized } = generate256BitKey();
 
-  t.truthy(check.array(key));
-  t.is(key.length, 32);
+  expect(check.array(key)).toBe(true);
+  expect(key).toHaveLength(32);
 
-  t.truthy(check.string(normalized));
-  t.is(normalized.length, 32);
+  expect(check.string(normalized)).toBe(true);
+  expect(normalized).toHaveLength(32);
 });
 
-test("generate256BitKey should always generate different key", async t => {
+test("generate256BitKey should always generate different key", () => {
   const keys = [];
   const normalizedKeys = [];
 
@@ -54,11 +53,12 @@ test("generate256BitKey should always generate different key", async t => {
     normalizedKeys.push(normalized);
   }
 
-  t.is(keys.length, 100);
-  t.is(normalizedKeys.length, 100);
+  expect(keys).toHaveLength(100);
+  expect(normalizedKeys).toHaveLength(100);
 
   const uniqueKeys = _.uniq(keys);
   const uniqueNormalizedKeys = _.uniq(normalizedKeys);
-  t.is(uniqueKeys.length, keys.length);
-  t.is(uniqueNormalizedKeys.length, normalizedKeys.length);
+
+  expect(uniqueKeys).toHaveLength(100);
+  expect(uniqueNormalizedKeys).toHaveLength(100);
 });

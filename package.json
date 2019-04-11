@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "jest"
   },
   "bin": {
     "codypaste-cli": "./index.js"
@@ -29,20 +29,16 @@
   },
   "homepage": "https://github.com/codypaste/codypaste-cli#readme",
   "devDependencies": {
-    "ava": "^1.4.1",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
     "check-types": "^8.0.2",
-    "lodash": "^4.17.11",
-    "sinon": "^7.3.1"
+    "jest": "^24.7.1",
+    "lodash": "^4.17.11"
   },
-  "ava": {
-    "files": [
-      "test/**/*.js"
-    ],
-    "cache": true,
-    "concurrency": 5,
-    "failFast": true,
-    "failWithoutAssertions": false,
-    "verbose": true,
-    "compileEnhancements": false
+  "jest": {
+    "testMatch": [
+      "**/*.test.js"
+    ]
   }
 }

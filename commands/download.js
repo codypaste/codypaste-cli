@@ -12,11 +12,11 @@ const {
 
 const saveFile = async (path, content) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(path, content, (err, data) => {
+    fs.writeFile(path, content, (err) => {
       if (err) {
         reject(err);
       }
-      resolve(data);
+      resolve();
     });
   });
 };
